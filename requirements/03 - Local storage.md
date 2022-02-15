@@ -21,7 +21,7 @@ The important methods to know are:
 
 The user has logged in and now has a valid bearer token saved in local storage. Which header do we need to put this token into when requesting a protected resource from a server?
 
-Answer:
+Answer: Authorization header when creating the fetch request.
 
 ### Q2
 
@@ -31,7 +31,8 @@ Imagine the below code gets profile information for a user by ID but requires a 
 fetch('http://localhost:4000/user-profile/1', {
     method: 'GET',
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem(userToken)
     }
 })
 ```
