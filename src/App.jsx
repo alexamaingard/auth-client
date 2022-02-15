@@ -14,7 +14,7 @@ export default function App() {
     });
 
     const [user, setUser] = useState();
-    const [token, setToken] = useState();
+    const [loginResponse, setLoginResponse] = useState();
 
     const fetchConfig = (reqBody) => {
         return {
@@ -84,10 +84,10 @@ export default function App() {
         setLoginUserData(loginUserData);
 
         const token = await loginUser();
-        setToken(token);
+        setLoginResponse(token);
     }
 
-    console.log(token)
+    console.log(loginResponse);
 
     return (
         <div className="App">
@@ -136,16 +136,16 @@ export default function App() {
                     </div>
                 )
             }
-            {token && !token.error && (
+            {loginResponse && !loginResponse.error && (
                     <div className="user">
                         <h2>Logged In User:</h2>
-                        <p><b>Token: </b>{token.data}</p>
+                        <p><b>Token: </b>{loginResponse.data}</p>
                     </div>
                 )
             }
-            {token && token.error && (
+            {loginResponse && loginResponse.error && (
                 <div className="user">
-                    <h2>{token.error}</h2>
+                    <h2>{loginResponse.error}</h2>
                 </div>
             )}
         </div>
