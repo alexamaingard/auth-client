@@ -84,10 +84,9 @@ export default function App() {
         setLoginUserData(loginUserData);
 
         const token = await loginUser();
+        localStorage.setItem("userToken", token);
         setLoginResponse(token);
     }
-
-    console.log(loginResponse);
 
     return (
         <div className="App">
@@ -148,6 +147,9 @@ export default function App() {
                     <h2>{loginResponse.error}</h2>
                 </div>
             )}
+            <form>
+                <button type="submit">Log Out</button>
+            </form>
         </div>
     );
 }
